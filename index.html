@@ -1,0 +1,2988 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shaad Mates - Sincere Hearts Association for Advance Development</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4a90e2; /* A vibrant blue */
+      --primary-dark: #2d60a0; /* Darker blue */
+      --light-bg: #e0eafc; /* Lighter background for light theme */
+      --dark-bg: #2c3e50; /* Darker background for dark theme */
+      --dark-text: #ecf0f1; /* Light text for dark theme */
+      --light-text: #34495e; /* Dark text for light theme */
+      --success-color: #2ecc71;
+      --error-color: #e74c3c;
+      --transition-speed: 0.4s;
+      --card-bg-light: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+      --card-bg-dark: rgba(44, 62, 80, 0.9); /* Semi-transparent dark blue */
+      --shadow-light: rgba(0,0,0,0.2);
+      --shadow-dark: rgba(0,0,0,0.4);
+    }
+    [data-theme="dark"] {
+      --primary-color: #7cb342; /* Green for dark theme */
+      --primary-dark: #558b2f;
+      --light-bg: var(--dark-bg);
+      --light-text: var(--dark-text);
+      --card-bg-light: var(--card-bg-dark);
+      --shadow-light: var(--shadow-dark);
+    }
+
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0;
+      font-family: "Roboto", sans-serif; /* Changed font */
+      background: var(--light-bg);
+      color: var(--light-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      background-image: url('https://source.unsplash.com/random/1920x1080/?education,library'); /* Dynamic background image */
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    /* Accessibility helpers */
+    .visually-hidden {
+      position: absolute!important;
+      width: 1px!important;
+      height: 1px!important;
+      padding: 0!important;
+      margin: -1px!important;
+      overflow: hidden!important;
+      clip: rect(0,0,0,0)!important;
+      white-space: nowrap!important;
+      border: 0!important;
+    }
+
+    /* Header & Nav */
+    header {
+      background: var(--primary-color);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      box-shadow: 0 4px 8px var(--shadow-light); /* Adjusted shadow */
+      user-select: none;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 2rem; /* Slightly larger */
+      letter-spacing: 1.5px; /* Adjusted letter spacing */
+      user-select: text;
+    }
+    nav {
+      position: relative;
+      font-weight: 600;
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.2rem; /* Increased gap */
+    }
+    nav ul li {
+      position: relative;
+      padding: 0.6rem 1.1rem; /* Adjusted padding */
+      cursor: pointer;
+      user-select: none;
+      border-radius: 8px; /* More rounded corners */
+      transition: background-color var(--transition-speed), transform 0.2s ease; /* Added transform */
+    }
+    nav ul li:hover,
+    nav ul li:focus-within {
+      background: var(--primary-dark);
+      transform: translateY(-2px); /* Lift effect on hover */
+    }
+    nav ul li > a {
+      display: inline-block;
+      color: white;
+      font-weight: 600;
+      outline-offset: 4px; /* Increased offset */
+      outline: transparent;
+      user-select: none;
+    }
+    nav ul li > a:focus,
+    nav ul li > a:hover {
+      outline: 2px solid white;
+      outline-offset: 4px;
+    }
+    /* Dropdown */
+    nav ul li ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--primary-dark);
+      display: none;
+      flex-direction: column;
+      min-width: 240px; /* Slightly wider */
+      border-radius: 0 0 8px 8px; /* More rounded corners */
+      box-shadow: 0 8px 16px var(--shadow-dark); /* Adjusted shadow */
+      z-index: 1100;
+      animation: dropdownFade 0.4s ease forwards;
+    }
+    nav ul li:hover > ul,
+    nav ul li:focus-within > ul {
+      display: flex;
+    }
+    nav ul li ul li {
+      padding: 0.6rem 1.2rem; /* Adjusted padding */
+      white-space: nowrap;
+      border-radius: 0;
+      transition: background-color var(--transition-speed);
+    }
+    nav ul li ul li:hover,
+    nav ul li ul li:focus-within {
+      background: #204a7a; /* Darker shade for hover */
+      outline: none;
+    }
+    nav ul li ul li ul {
+      left: 100%;
+      top: 0;
+      border-radius: 8px; /* More rounded corners */
+      min-width: 220px; /* Slightly wider */
+    }
+    /* Dropdown arrow */
+    nav ul li.has-submenu > a::after {
+      content: " ▼";
+      font-size: 0.7rem; /* Slightly larger */
+    }
+    nav ul li ul li.has-submenu > a::after {
+      content: " ▶";
+      font-size: 0.7rem; /* Slightly larger */
+      float: right;
+    }
+
+    /* Animation for dropdown */
+    @keyframes dropdownFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px); /* Increased translateY */
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive navigation */
+    #menu-toggle {
+      display: none;
+      font-size: 1.9rem; /* Slightly larger */
+      user-select: none;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      outline-offset: 4px; /* Increased offset */
+    }
+    @media (max-width: 720px) {
+      nav ul {
+        flex-direction: column;
+        position: fixed;
+        top: 60px; /* Adjusted top */
+        right: -300px; /* Wider off-screen */
+        background: var(--primary-dark);
+        height: calc(100% - 60px); /* Adjusted height */
+        width: 280px; /* Wider menu */
+        padding-top: 0.8rem; /* Adjusted padding */
+        gap: 0;
+        transition: right 0.3s ease;
+        box-shadow: -8px 0 16px rgba(0, 0, 0, 0.4); /* Adjusted shadow */
+      }
+      nav ul.show {
+        right: 0;
+      }
+      nav ul li {
+        width: 100%;
+        padding: 1rem 1.8rem; /* Adjusted padding */
+        border-radius: 0;
+      }
+      nav ul li ul {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+        min-width: auto;
+        display: none !important;
+      }
+      nav ul li.open > ul {
+        display: flex !important;
+        flex-direction: column;
+      }
+      nav ul li ul li {
+        padding-left: 2.5rem; /* Increased padding */
+      }
+      nav ul li ul li ul li {
+        padding-left: 3.5rem; /* Increased padding */
+      }
+      #menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Main content area */
+    main {
+      flex-grow: 1;
+      padding: 2.5rem 3.5rem; /* Increased padding */
+      max-width: 1100px; /* Slightly wider */
+      margin: 0 auto 4rem auto;
+      background: var(--card-bg-light); /* Semi-transparent background */
+      color: var(--light-text);
+      border-radius: 16px; /* More rounded corners */
+      box-shadow: 0 12px 30px var(--shadow-light); /* Adjusted shadow */
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      min-height: 70vh;
+    }
+    main section {
+      display: none;
+      animation: fadeIn 0.6s ease both; /* Slightly longer animation */
+    }
+    main section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;transform: translateY(15px);} /* Increased translateY */
+      to {opacity: 1;transform: translateY(0);}
+    }
+    h1,h2,h3,h4,h5 {
+      font-weight: 700;
+      margin: 1.2rem 0 0.6rem 0; /* Adjusted margins */
+      color: var(--primary-dark);
+    }
+    h2 {
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 0.4rem; /* Adjusted padding */
+      font-size: 2.2rem; /* Slightly larger */
+    }
+
+    /* Paragraph styling */
+    p {
+      font-size: 1.15rem; /* Slightly larger */
+      line-height: 1.7; /* Increased line height */
+      margin-bottom: 1.2rem; /* Adjusted margin */
+    }
+    /* Buttons base */
+    button, input[type="submit"] {
+      cursor: pointer;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px; /* More rounded corners */
+      padding: 0.7rem 1.4rem; /* Adjusted padding */
+      font-size: 1.05rem; /* Slightly larger */
+      font-weight: 600;
+      box-shadow: 0 5px 10px var(--shadow-light); /* Adjusted shadow */
+      transition: background-color var(--transition-speed), box-shadow 0.3s ease, transform 0.2s ease; /* Added transform */
+      user-select: none;
+    }
+    button:focus-visible, input[type="submit"]:focus-visible {
+      outline: 3px solid var(--primary-dark);
+      outline-offset: 3px; /* Increased offset */
+    }
+    button:hover, input[type="submit"]:hover {
+      background-color: var(--primary-dark);
+      box-shadow: 0 8px 16px var(--shadow-light); /* Adjusted shadow */
+      transform: translateY(-2px); /* Lift effect on hover */
+    }
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* Forms */
+    form {
+      margin-top: 1.2rem; /* Adjusted margin */
+      display: flex;
+      gap: 1.2rem; /* Increased gap */
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    form label {
+      min-width: 130px; /* Slightly wider */
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+    form input:not([type="submit"]), form select {
+      flex-grow: 1;
+      padding: 0.5rem 0.8rem; /* Adjusted padding */
+      border-radius: 6px; /* More rounded corners */
+      border: 2px solid #ccc; /* Thicker border */
+      font-size: 1.05rem; /* Slightly larger */
+      transition: border-color var(--transition-speed), box-shadow 0.2s ease; /* Added box-shadow */
+    }
+    form input:not([type="submit"]):focus, form select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3); /* Focus shadow */
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem; /* Adjusted margin */
+      font-size: 1.05rem; /* Slightly larger */
+      user-select: text;
+    }
+    thead {
+      background: var(--primary-color);
+      color: white;
+      font-weight: 700;
+    }
+    th, td {
+      padding: 0.8rem 1.2rem; /* Adjusted padding */
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+      vertical-align: middle;
+    }
+    tbody tr:hover {
+      background-color: #e6f2ff; /* Lighter hover color */
+      cursor: default;
+      transition: background-color 0.25s ease;
+    }
+    td .action-btn {
+      background: #e74c3c; /* Error color */
+      padding: 0.4rem 0.8rem; /* Adjusted padding */
+      font-size: 0.95rem; /* Slightly larger */
+      border-radius: 6px; /* More rounded corners */
+      line-height: 1;
+      border: none;
+    }
+    td .action-btn.edit {
+      background: #3498db; /* Blue for edit */
+      margin-right: 0.6rem; /* Adjusted margin */
+    }
+    td .action-btn:hover {
+      filter: brightness(0.9);
+      transform: translateY(-1px); /* Lift effect */
+    }
+
+    /* Committee Cards */
+    .committee-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Slightly wider min */
+      gap: 2.5rem; /* Increased gap */
+      margin-top: 1.5rem; /* Adjusted margin */
+      justify-items: center;
+    }
+    .card {
+      background: var(--card-bg-light);
+      border-radius: 18px; /* More rounded corners */
+      padding: 1.8rem 1.2rem; /* Adjusted padding */
+      width: 250px; /* Slightly wider */
+      box-shadow: 0 10px 25px var(--shadow-light); /* Adjusted shadow */
+      text-align: center;
+      position: relative;
+      perspective: 1000px;
+      cursor: pointer;
+      transition: box-shadow var(--transition-speed), transform 0.3s ease; /* Added transform */
+      outline-offset: 5px; /* Increased offset */
+      outline: none;
+    }
+    .card:focus,
+    .card:hover {
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4); /* More pronounced shadow */
+      outline: 3px solid var(--primary-color);
+      transform: translateY(-5px); /* Lift effect */
+    }
+    .card-inner {
+      width: 100%;
+      height: 300px; /* Slightly taller */
+      text-align: center;
+      transition: transform 0.8s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+      transform-style: preserve-3d;
+      position: relative;
+      border-radius: 18px; /* More rounded corners */
+    }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px; /* More rounded corners */
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1.2rem; /* Adjusted padding */
+    }
+    .card-front img {
+      width: 120px; /* Slightly larger */
+      height: 120px; /* Slightly larger */
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-dark); /* Thicker border */
+      margin-bottom: 1.2rem; /* Adjusted margin */
+      background: #fff;
+    }
+    .card-front h4 {
+      margin: 0 0 0.6rem 0; /* Adjusted margin */
+      color: var(--primary-dark);
+      font-size: 1.35rem; /* Slightly larger */
+      font-weight: 700;
+    }
+    .card-front p {
+      margin: 0;
+      font-weight: 600;
+      color: var(--primary-color);
+      font-size: 1.15rem; /* Slightly larger */
+    }
+    .card-back {
+      background: var(--primary-color);
+      color: white;
+      transform: rotateY(180deg);
+      font-size: 0.95rem; /* Slightly larger */
+      line-height: 1.5; /* Increased line height */
+      font-weight: 500;
+      border: 3px solid var(--primary-dark); /* Thicker border */
+      box-shadow: inset 0 0 25px rgba(0,0,0, 0.3); /* More pronounced shadow */
+      cursor: default;
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-dark);
+      color: white;
+      text-align: center;
+      padding: 1.2rem 2.5rem; /* Adjusted padding */
+      font-size: 0.95rem; /* Slightly larger */
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    /* Modal Related */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); 
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .modal {
+      background: linear-gradient(145deg, #ffffff, #f8f9fa);
+      color: var(--light-text);
+      border-radius: 12px;
+      padding: 2.5rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2), 
+                  0 0 0 1px rgba(255,255,255,0.1);
+      position: relative;
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), 
+                 box-shadow 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+    .modal h3 {
+      margin: 0 0 1.5rem 0;
+      color: var(--primary-dark);
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; /* Increased gap */
+    }
+    .modal label {
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    .modal input, .modal select {
+      padding: 0.6rem 1rem; /* Adjusted padding */
+      border-radius: 8px; /* More rounded corners */
+      border: 2px solid #ccc; /* Thicker border */
+      font-size: 1.05rem; /* Slightly larger */
+      transition: border-color 0.3s, box-shadow 0.2s ease; /* Added box-shadow */
+    }
+    .modal input:focus, .modal select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+      transform: translateY(-1px);
+    }
+    .modal .btn-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .btn-cancel {
+      background: #7f8c8d; /* Grey for cancel */
+    }
+    .btn-cancel:hover {
+      background: #616a6b; /* Darker grey */
+    }
+
+    /* Notification Toast */
+    #toast {
+      position: fixed;
+      bottom: 1.5rem; /* Adjusted position */
+      right: 1.5rem; /* Adjusted position */
+      min-width: 250px; /* Wider min-width */
+      max-width: 350px; /* Wider max-width */
+      background: var(--success-color);
+      color: white;
+      padding: 1.2rem 1.5rem; /* Adjusted padding */
+      border-radius: 12px; /* More rounded corners */
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* More pronounced shadow */
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(40px); /* Increased translateY */
+      transition: opacity 0.4s ease, transform 0.4s ease; /* Slightly longer transition */
+      font-weight: 600;
+      z-index: 2000;
+    }
+    #toast.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    #toast.error {
+      background: var(--error-color);
+    }
+    
+    /* Results Section */
+    .results-container {
+      margin-top: 2.5rem; /* Adjusted margin */
+    }
+    .result-item {
+      background: var(--card-bg-light);
+      border-radius: 12px; /* More rounded corners */
+      padding: 1.5rem; /* Increased padding */
+      margin-bottom: 1.5rem; /* Adjusted margin */
+      box-shadow: 0 4px 10px var(--shadow-light); /* Adjusted shadow */
+    }
+    .result-item h3 {
+      margin-top: 0;
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.6rem; /* Adjusted padding */
+      font-size: 1.6rem; /* Larger font size */
+    }
+    .result-positions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Slightly wider min */
+      gap: 1.5rem; /* Increased gap */
+      margin-top: 1.5rem; /* Adjusted margin */
+    }
+    .position-card {
+      background: white;
+      border-radius: 10px; /* More rounded corners */
+      padding: 1.2rem; /* Adjusted padding */
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15); /* Adjusted shadow */
+    }
+    .position-card h4 {
+      margin: 0 0 0.6rem 0; /* Adjusted margin */
+      color: var(--primary-dark);
+      font-size: 1.2rem; /* Larger font size */
+    }
+    .position-card p {
+      margin: 0;
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    .gold {
+      border-left: 5px solid gold; /* Thicker border */
+    }
+    .silver {
+      border-left: 5px solid silver; /* Thicker border */
+    }
+    .bronze {
+      border-left: 5px solid #cd7f32; /* Thicker border */
+    }
+    
+    /* Admin Password Modal */
+    .admin-password-modal {
+      max-width: 400px; /* Wider */
+    }
+    .admin-password-modal input[type="password"] {
+      width: 100%;
+      padding: 0.7rem; /* Adjusted padding */
+      margin-bottom: 1.2rem; /* Adjusted margin */
+      border-radius: 8px; /* More rounded corners */
+    }
+    
+    /* Admin Controls */
+    .admin-controls {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1.2rem; /* Adjusted margin */
+    }
+    .admin-login-btn {
+      background: var(--primary-dark);
+    }
+    .admin-logout-btn {
+      background: #e74c3c; /* Error color */
+    }
+
+    /* Gallery styles */
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem; /* Increased gap */
+      margin-top: 1.5rem; /* Adjusted margin */
+    }
+    .gallery-item {
+      position: relative;
+      width: 180px; /* Wider */
+      background: var(--card-bg-light);
+      border-radius: 12px; /* More rounded corners */
+      padding: 0.8rem; /* Adjusted padding */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* More pronounced shadow */
+      transition: transform 0.2s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px); /* More lift */
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 180px; /* Taller */
+      object-fit: cover;
+      border-radius: 8px; /* More rounded corners */
+      cursor: pointer;
+    }
+    .gallery-item .image-name {
+      margin-top: 0.6rem; /* Adjusted margin */
+      font-weight: 600;
+      text-align: center;
+      word-break: break-word;
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    .gallery-item .image-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.6rem; /* Adjusted margin */
+    }
+    .gallery-item .download-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px; /* More rounded corners */
+      padding: 0.4rem 0.8rem; /* Adjusted padding */
+      font-size: 0.9rem; /* Slightly larger */
+      cursor: pointer;
+    }
+    .gallery-item .delete-btn {
+      background: #e74c3c; /* Error color */
+      color: white;
+      border: none;
+      border-radius: 6px; /* More rounded corners */
+      padding: 0.4rem 0.8rem; /* Adjusted padding */
+      font-size: 0.9rem; /* Slightly larger */
+      cursor: pointer;
+    }
+    .gallery-item .delete-btn:hover, 
+    .gallery-item .download-btn:hover {
+      filter: brightness(0.9);
+    }
+
+    /* Videos Section */
+    .videos-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Slightly wider min */
+      gap: 1.8rem; /* Increased gap */
+      margin-top: 1.5rem; /* Adjusted margin */
+    }
+    .video-item {
+      background: var(--card-bg-light);
+      border-radius: 12px; /* More rounded corners */
+      padding: 1.2rem; /* Adjusted padding */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* More pronounced shadow */
+    }
+    .video-item video {
+      width: 100%;
+      border-radius: 8px; /* More rounded corners */
+      margin-bottom: 0.6rem; /* Adjusted margin */
+    }
+    .video-item .video-name {
+      font-weight: 600;
+      margin-bottom: 0.6rem; /* Adjusted margin */
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    .video-item .video-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Library Section */
+    .library-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Slightly wider min */
+      gap: 1.8rem; /* Increased gap */
+      margin-top: 1.5rem; /* Adjusted margin */
+    }
+    .book-item {
+      background: var(--card-bg-light);
+      border-radius: 12px; /* More rounded corners */
+      padding: 1.2rem; /* Adjusted padding */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* More pronounced shadow */
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .book-item .book-icon {
+      font-size: 3.5rem; /* Larger icon */
+      text-align: center;
+      margin: 1.2rem 0; /* Adjusted margin */
+      color: var(--primary-color);
+    }
+    .book-item .book-name {
+      font-weight: 600;
+      margin-bottom: 0.6rem; /* Adjusted margin */
+      flex-grow: 1;
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    .book-item .book-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Search bars */
+    .search-container {
+      margin: 1.2rem 0; /* Adjusted margin */
+      display: flex;
+      gap: 1.2rem; /* Increased gap */
+      align-items: center;
+    }
+    .search-container input[type="text"] {
+      flex-grow: 1;
+      padding: 0.6rem; /* Adjusted padding */
+      border-radius: 6px; /* More rounded corners */
+      border: 2px solid #ccc; /* Thicker border */
+      max-width: 450px; /* Wider max-width */
+    }
+
+    /* Upload forms */
+    .upload-form {
+      background: var(--card-bg-light);
+      padding: 1.5rem; /* Increased padding */
+      border-radius: 12px; /* More rounded corners */
+      margin-bottom: 1.5rem; /* Adjusted margin */
+      box-shadow: 0 4px 10px var(--shadow-light); /* Added shadow */
+    }
+    .upload-form label {
+      display: block;
+      margin-bottom: 0.6rem; /* Adjusted margin */
+      font-weight: 600;
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    .upload-form input[type="file"] {
+      margin-bottom: 1.2rem; /* Adjusted margin */
+    }
+    .upload-form input[type="text"] {
+      width: 100%;
+      padding: 0.6rem; /* Adjusted padding */
+      margin-bottom: 1.2rem; /* Adjusted margin */
+      border-radius: 6px; /* More rounded corners */
+      border: 2px solid #ccc; /* Thicker border */
+    }
+
+    /* Programs Section Specific */
+    .program-month-section {
+      background: var(--card-bg-light);
+      border-radius: 12px; /* More rounded corners */
+      padding: 1.5rem; /* Increased padding */
+      margin-bottom: 1.8rem; /* Adjusted margin */
+      box-shadow: 0 4px 10px var(--shadow-light); /* Adjusted shadow */
+    }
+    .program-month-section h3 {
+      margin-top: 0;
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.6rem; /* Adjusted padding */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.6rem; /* Larger font size */
+    }
+    .program-month-section h3 button {
+      margin-left: 1.2rem; /* Adjusted margin */
+      padding: 0.5rem 1rem; /* Adjusted padding */
+      font-size: 0.95rem; /* Slightly larger */
+    }
+    .program-table-container {
+      overflow-x: auto;
+    }
+    .program-table-container table {
+      min-width: 650px; /* Ensure table doesn't shrink too much */
+    }
+
+    /* Wing Detail Modal */
+    .wing-detail-modal .modal {
+      max-width: 750px; /* Wider */
+    }
+    .wing-detail-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem; /* Increased gap */
+    }
+    .wing-chairmen {
+      display: flex;
+      justify-content: space-around;
+      gap: 1.2rem; /* Increased gap */
+      flex-wrap: wrap;
+    }
+    .chairman-card {
+      text-align: center;
+      background: #f8f9fa; /* Lighter background */
+      padding: 1.2rem; /* Adjusted padding */
+      border-radius: 10px; /* More rounded corners */
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15); /* Adjusted shadow */
+      width: 200px; /* Wider */
+    }
+    .chairman-card img {
+      width: 110px; /* Slightly larger */
+      height: 110px; /* Slightly larger */
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.6rem; /* Adjusted margin */
+      border: 3px solid var(--primary-color); /* Thicker border */
+    }
+    .chairman-card h4 {
+      margin: 0.6rem 0 0.3rem 0; /* Adjusted margin */
+      color: var(--primary-dark);
+      font-size: 1.2rem; /* Larger font size */
+    }
+    .chairman-card p {
+      margin: 0;
+      font-size: 0.95rem; /* Slightly larger */
+      color: #555;
+    }
+    .wing-programs-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .wing-programs-list li {
+      background: #f0f4f8; /* Lighter background */
+      margin-bottom: 0.6rem; /* Adjusted margin */
+      padding: 0.8rem 1.2rem; /* Adjusted padding */
+      border-radius: 6px; /* More rounded corners */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    .wing-programs-list li strong {
+      color: var(--primary-dark);
+    }
+    .wing-detail-modal .upload-chairman-image-form {
+      margin-top: 1.2rem; /* Adjusted margin */
+      padding: 1.2rem; /* Adjusted padding */
+      background: #fefefe; /* Lighter background */
+      border-radius: 10px; /* More rounded corners */
+      border: 1px dashed #b0c4de; /* Different border color */
+    }
+    .wing-detail-modal .upload-chairman-image-form label {
+      font-weight: normal;
+      min-width: auto;
+    }
+    .wing-detail-modal .upload-chairman-image-form input[type="file"] {
+      margin-bottom: 0.6rem; /* Adjusted margin */
+    }
+    .wing-detail-modal .upload-chairman-image-form button {
+      margin-top: 0.6rem; /* Adjusted margin */
+    }
+
+    /* Student Detail Modal */
+    .student-detail-modal .modal {
+      max-width: 600px;
+    }
+    .student-detail-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .student-info {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .student-info img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-color);
+    }
+    .student-details {
+      flex-grow: 1;
+    }
+    .student-details h4 {
+      margin: 0.5rem 0;
+      color: var(--primary-dark);
+    }
+    .student-posts {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .student-posts h4 {
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .no-posts {
+      color: #666;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Shaad Mates</h1>
+  <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <nav>
+    <ul id="nav-list" role="menubar">
+      <li role="none" class=""><a href="#" data-section="home" role="menuitem" tabindex="0" aria-current="false">Home</a></li>
+      <li role="none" class="has-submenu" aria-haspopup="true" aria-expanded="false">
+        <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Details</a>
+        <ul role="menu" aria-label="Details submenu">
+          <li role="none" class=""><a href="#" data-section="students" role="menuitem" tabindex="-1" aria-current="false">Students Details</a></li>
+          <li role="none" class="has-submenu" aria-haspopup="true" aria-expanded="false">
+            <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">Committee Details</a>
+            <ul role="menu" aria-label="Committee submenu">
+              <li role="none" class=""><a href="#" data-section="core-committee" role="menuitem" tabindex="-1" aria-current="false">Core Committee</a></li>
+              <li role="none" class=""><a href="#" data-section="wings-clubs" role="menuitem" tabindex="-1" aria-current="false">Wing and Club Details</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li role="none" class=""><a href="#" data-section="programs" role="menuitem" tabindex="0" aria-current="false">Programs</a></li>
+      <li role="none"><a href="#" data-section="results" role="menuitem" tabindex="0" aria-current="false">Results</a></li>
+      <li role="none"><a href="#" data-section="gallery" role="menuitem" tabindex="0" aria-current="false">Gallery</a></li>
+      <li role="none"><a href="#" data-section="videos" role="menuitem" tabindex="0" aria-current="false">Videos</a></li>
+      <li role="none"><a href="#" data-section="library" role="menuitem" tabindex="0" aria-current="false">Library</a></li>
+    </ul>
+  </nav>
+  <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle light/dark mode" aria-pressed="false" style="background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;user-select:none;">☾</button>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home" class="home" tabindex="0" aria-label="Home page">
+    <h2>About Shaad Mates</h2>
+    <p><strong>Shaad Mates</strong> stands for <em>Sincere Hearts Association for Advance Development.</em></p>
+    <p>We belong to the <strong>24th batch of NIICS</strong>, under the <strong>Darul Huda Islamic University (DHIU)</strong>. Our class comprises <strong>26 talented and brilliant students</strong> pursuing academic and personal excellence together in a nurturing environment.</p>
+  </section>
+
+  <!-- STUDENTS DETAILS -->
+  <section id="students" aria-label="Students Details page" tabindex="0" class="">
+    <div class="admin-controls">
+      <button id="admin-login-btn" class="admin-login-btn" style="display: block;">Admin Login</button>
+      <button id="admin-logout-btn" class="admin-logout-btn" style="display: none;">Logout</button>
+    </div>
+    
+    <h2>Students Details</h2>
+    <button id="add-student-btn" aria-haspopup="dialog" aria-controls="modal-student-form" style="display: none;">Add Student</button>
+
+    <div class="search-container">
+      <input type="text" aria-label="Search students by name or admission no." placeholder="Search Students..." id="search-students">
+    </div>
+
+    <table aria-label="Students table" role="grid">
+      <thead>
+        <tr>
+          <th scope="col" tabindex="0" data-sort="sno">S.No ▲▼</th>
+          <th scope="col" tabindex="0" data-sort="name">Name ▲▼</th>
+          <th scope="col" tabindex="0" data-sort="adno">Admission No. ▲▼</th>
+          <th scope="col" tabindex="0" data-sort="mobile">Mobile No. ▲▼</th>
+          <th scope="col" tabindex="0" data-sort="address">Address ▲▼</th> <!-- Added Address column -->
+          <th scope="col" aria-label="Actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="students-tbody"></tbody>
+    </table>
+  </section>
+
+  <!-- COMMITTEE DETAILS (Landing not used, always goes inner pages) -->
+  <section id="committee" aria-label="Committee Details page" tabindex="0">
+    <h2>Committee Details</h2>
+    <p>Please select a submenu under Details &gt; Committee Details to view.</p>
+  </section>
+
+  <!-- CORE COMMITTEE -->
+  <section id="core-committee" aria-label="Core Committee" tabindex="0" class="">
+    <div class="admin-controls">
+      <button id="admin-login-btn-committee" class="admin-login-btn" style="display: block;">Admin Login</button>
+      <button id="admin-logout-btn-committee" class="admin-logout-btn" style="display: none;">Logout</button>
+    </div>
+    
+    <h2>Core Committee Members</h2>
+    <p>Click or tab to flip cards for details.</p>
+    
+    <div class="committee-cards" role="list">
+      <!-- New Advisory Board Member -->
+      <article class="card" role="listitem" tabindex="0" aria-label="Core Committee Member Dr. Abdullah, Advisory Board, flip card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/110/00796b/FFFFFF?text=Advisory" alt="Portrait of Dr. Abdullah, Advisory Board">
+            <h4>Dr. Abdullah</h4>
+            <p>Advisory Board</p>
+          </div>
+          <div class="card-back">
+            <p><strong>Name:</strong> Dr. Abdullah</p>
+            <p><strong>Role:</strong> Advisory Board</p>
+            <p><strong>Provides strategic guidance and mentorship.</strong></p>
+          </div>
+        </div>
+      </article>
+      <article class="card" role="listitem" tabindex="0" aria-label="Core Committee Member Irfan Ansari, President, flip card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/110/00796b/FFFFFF?text=Irfan" alt="Portrait of Irfan Ansari, President">
+            <h4>Shekh Nabil</h4>
+            <p>President</p>
+          </div>
+          <div class="card-back">
+            <p><strong>Name:</strong> Shekh Nabil</p>
+            <p><strong>Role:</strong> President</p>
+            <p><strong>Leadership &amp; vision for Shaad Mates.</strong></p>
+          </div>
+        </div>
+      </article>
+      <article class="card" role="listitem" tabindex="0" aria-label="Core Committee Member Shafi Alam, Secretary, flip card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/110/00796b/FFFFFF?text=Shafi" alt="Portrait of Shafi Alam, Secretary">
+            <h4>Shafi Alam</h4>
+            <p>Secretary</p>
+          </div>
+          <div class="card-back">
+            <p><strong>Name:</strong> Shafi Alam</p>
+            <p><strong>Role:</strong> Secretary</p>
+            <p><strong>Organizes meetings and takes notes.</strong></p>
+          </div>
+        </div>
+      </article>
+      <article class="card" role="listitem" tabindex="0" aria-label="Core Committee Member Arif Hussain, Joint Secretary, flip card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/110/00796b/FFFFFF?text=Arif" alt="Portrait of Arif Hussain, Joint Secretary">
+            <h4>Arif Hussain</h4>
+            <p>Joint Secretary</p>
+          </div>
+          <div class="card-back">
+            <p><strong>Name:</strong> Arif Hussain</p>
+            <p><strong>Role:</strong> Joint Secretary</p>
+            <p><strong>Supports Secretary and manages communications.</strong></p>
+          </div>
+        </div>
+      </article>
+      <article class="card" role="listitem" tabindex="0" aria-label="Core Committee Member Arman Khan, Treasurer, flip card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/110/00796b/FFFFFF?text=Arman" alt="Portrait of Arman Khan, Treasurer">
+            <h4>Arman Khan</h4>
+            <p>Treasurer</p>
+          </div>
+          <div class="card-back">
+            <p><strong>Name:</strong> Arman Khan</p>
+            <p><strong>Role:</strong> Treasurer</p>
+            <p><strong>Manages funds and finances of Shaad Mates.</strong></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- WING AND CLUB DETAILS -->
+  <section id="wings-clubs" aria-label="Wing and Club Details" tabindex="0" class="">
+    <div class="admin-controls">
+      <button id="admin-login-btn-wings" class="admin-login-btn" style="display: block;">Admin Login</button>
+      <button id="admin-logout-btn-wings" class="admin-logout-btn" style="display: none;">Logout</button>
+    </div>
+    
+    <h2>Wing and Club Details</h2>
+    <button id="add-wing-btn" aria-haspopup="dialog" aria-controls="modal-wing-form" style="display: none;">Add Wing or Club</button>
+    
+    <div class="search-container">
+      <input type="text" aria-label="Search wings or clubs" placeholder="Search Wings/Clubs..." id="search-wings">
+    </div>
+
+    <table aria-label="Wings and Clubs table" role="grid">
+      <thead>
+        <tr>
+          <th scope="col" tabindex="0" data-sort="index"># ▲▼</th>
+          <th scope="col" tabindex="0" data-sort="name">Wing/Club Name ▲▼</th>
+          <th scope="col" tabindex="0" data-sort="chairman1">Chairman 1 ▲▼</th>
+          <th scope="col" tabindex="0" data-sort="chairman2">Chairman 2 ▲▼</th>
+          <th scope="col" aria-label="Actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="wings-tbody"></tbody>
+    </table>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section id="programs" aria-label="Programs Page" tabindex="0" class="">
+    <div class="admin-controls">
+      <button id="admin-login-btn-programs" class="admin-login-btn" style="display: block;">Admin Login</button>
+      <button id="admin-logout-btn-programs" class="admin-logout-btn" style="display: none;">Logout</button>
+    </div>
+    
+    <h2>Programs Management</h2>
+    
+    <div id="program-admin" aria-hidden="true" style="display: none; margin-top: 1rem;">
+      <button id="add-program-btn" aria-haspopup="dialog" aria-controls="modal-program-form" aria-hidden="true">Add New Program</button>
+
+      <div class="search-container">
+        <input type="text" aria-label="Search programs" placeholder="Search Programs..." id="search-programs">
+      </div>
+    </div>
+
+    <div id="programs-container">
+      <!-- Programs will be rendered here, grouped by month/year -->
+    </div>
+  </section>
+  
+  <!-- RESULTS -->
+  <section id="results" aria-label="Results Page" tabindex="0" class="">
+    <div class="admin-controls">
+      <button id="admin-login-btn-results" class="admin-login-btn" style="display: block;">Admin Login</button>
+      <button id="admin-logout-btn-results" class="admin-logout-btn" style="display: none;">Logout</button>
+    </div>
+    
+    <h2>Program Results</h2>
+    <button id="add-result-btn" aria-haspopup="dialog" aria-controls="modal-result-form" style="display: none;">Add Result</button>
+    
+    <div class="results-container" id="results-container"></div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" aria-label="Gallery Page" tabindex="0" class="">
+    <div class="admin-controls">
+      <button id="admin-login-btn-gallery" class="admin-login-btn" style="display: block;">Admin Login</button>
+      <button id="admin-logout-btn-gallery" class="admin-logout-btn" style="display: none;">Logout</button>
+    </div>
+    
+    <h2>Gallery</h2>
+    
+    <div class="upload-form" style="display: none;" id="gallery-upload-form">
+      <label for="image-upload">Upload Image:</label>
+      <input type="file" id="image-upload" accept="image/*">
+      <label for="image-name">Image Name:</label>
+      <input type="text" id="image-name" placeholder="Enter image name">
+      <button id="upload-image-btn">Upload Image</button>
+    </div>
+    
+    <div class="search-container">
+      <input type="text" aria-label="Search images by name" placeholder="Search Images..." id="search-gallery">
+    </div>
+    
+    <div id="gallery-container" class="gallery-container" aria-live="polite" aria-relevant="additions"></div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos" aria-label="Videos Page" tabindex="0" class="">
+    <div class="admin-controls">
+      <button id="admin-login-btn-videos" class="admin-login-btn" style="display: block;">Admin Login</button>
+      <button id="admin-logout-btn-videos" class="admin-logout-btn" style="display: none;">Logout</button>
+    </div>
+    
+    <h2>Videos</h2>
+    
+    <div class="upload-form" style="display: none;" id="video-upload-form">
+      <label for="video-upload">Upload Video:</label>
+      <input type="file" id="video-upload" accept="video/*">
+      <label for="video-name">Video Name:</label>
+      <input type="text" id="video-name" placeholder="Enter video name">
+      <button id="upload-video-btn">Upload Video</button>
+    </div>
+    
+    <div class="search-container">
+      <input type="text" aria-label="Search videos by name" placeholder="Search Videos..." id="search-videos">
+    </div>
+    
+    <div id="videos-container" class="videos-container"></div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section id="library" aria-label="Library Page" tabindex="0" class="">
+    <div class="admin-controls">
+      <button id="admin-login-btn-library" class="admin-login-btn" style="display: block;">Admin Login</button>
+      <button id="admin-logout-btn-library" class="admin-logout-btn" style="display: none;">Logout</button>
+    </div>
+    
+    <h2>Library</h2>
+    
+    <div class="upload-form" style="display: none;" id="library-upload-form">
+      <label for="book-upload">Upload Book/PDF:</label>
+      <input type="file" id="book-upload" accept=".pdf,.epub,.doc,.docx">
+      <label for="book-name">Book Name:</label>
+      <input type="text" id="book-name" placeholder="Enter book name">
+      <button id="upload-book-btn">Upload Book</button>
+    </div>
+    
+    <div class="search-container">
+      <input type="text" aria-label="Search books by name" placeholder="Search Books..." id="search-library">
+    </div>
+    
+    <div id="library-container" class="library-container"></div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2023 Shaad Mates - Sincere Hearts Association for Advance Development</p>
+</footer>
+
+<!-- MODALS -->
+
+<!-- Student Modal -->
+<div class="modal-overlay" id="modal-student-form" role="dialog" aria-modal="true" aria-labelledby="modal-student-title">
+  <div class="modal" role="document" tabindex="0">
+    <h3 id="modal-student-title">Add/Edit Student</h3>
+    <form id="student-modal-form" novalidate="">
+      <input type="hidden" id="student-index" value="-1">
+      <label for="stu-sno-modal">S.No:</label>
+      <input type="number" id="stu-sno-modal" name="sno" min="1" required="">
+      <label for="stu-name-modal">Name:</label>
+      <input type="text" id="stu-name-modal" name="name" required="">
+      <label for="stu-adno-modal">Admission No.:</label>
+      <input type="text" id="stu-adno-modal" name="adno" required="">
+      <label for="stu-mobile-modal">Mobile Number:</label>
+      <input type="tel" id="stu-mobile-modal" name="mobile" pattern="\\d{10}" title="10 digit mobile number" required="">
+      <label for="stu-address-modal">Address:</label> <!-- Added Address field -->
+      <input type="text" id="stu-address-modal" name="address" required="">
+      <label for="stu-image-modal">Student Image:</label>
+      <input type="file" id="stu-image-modal" name="image" accept="image/*">
+      <div class="btn-row">
+        <button type="button" id="student-cancel-btn" class="btn-cancel">Cancel</button>
+        <input type="submit" value="Save">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Student Detail Modal -->
+<div class="modal-overlay student-detail-modal" id="modal-student-detail" role="dialog" aria-modal="true" aria-labelledby="modal-student-detail-title">
+  <div class="modal" role="document" tabindex="0">
+    <h3 id="modal-student-detail-title">Student Details</h3>
+    <div class="student-detail-content">
+      <div class="student-info">
+        <img id="student-detail-image" src="https://via.placeholder.com/150/cccccc/FFFFFF?text=No+Image" alt="Student Image">
+        <div class="student-details">
+          <h4 id="student-detail-name"></h4>
+          <p><strong>S.No:</strong> <span id="student-detail-sno"></span></p>
+          <p><strong>Admission No.:</strong> <span id="student-detail-adno"></span></p>
+          <p><strong>Mobile No.:</strong> <span id="student-detail-mobile"></span></p>
+          <p><strong>Address:</strong> <span id="student-detail-address"></span></p> <!-- Added Address display -->
+        </div>
+      </div>
+      <div class="student-posts">
+        <h4>Posts in Shaad Mates</h4>
+        <div id="student-posts-content" class="no-posts">You have not any post in Shaad Mates</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button type="button" id="student-detail-close-btn" class="btn-cancel">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Wing Modal -->
+<div class="modal-overlay" id="modal-wing-form" role="dialog" aria-modal="true" aria-labelledby="modal-wing-title">
+  <div class="modal" role="document" tabindex="0">
+    <h3 id="modal-wing-title">Add/Edit Wing or Club</h3>
+    <form id="wing-modal-form" novalidate="">
+      <input type="hidden" id="wing-index" value="-1">
+      <label for="wing-name-modal">Wing/Club Name:</label>
+      <input type="text" id="wing-name-modal" name="name" required="">
+      <label for="wing-chairman1-modal">Chairman 1 Name:</label>
+      <input type="text" id="wing-chairman1-modal" name="chairman1" required="">
+      <label for="wing-chairman1-image-modal">Chairman 1 Image:</label>
+      <input type="file" id="wing-chairman1-image-modal" name="chairman1_image" accept="image/*">
+      <label for="wing-chairman2-modal">Chairman 2 Name:</label>
+      <input type="text" id="wing-chairman2-modal" name="chairman2">
+      <label for="wing-chairman2-image-modal">Chairman 2 Image:</label>
+      <input type="file" id="wing-chairman2-image-modal" name="chairman2_image" accept="image/*">
+      <div class="btn-row">
+        <button type="button" id="wing-cancel-btn" class="btn-cancel">Cancel</button>
+        <input type="submit" value="Save">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Program Modal -->
+<div class="modal-overlay" id="modal-program-form" role="dialog" aria-modal="true" aria-labelledby="modal-program-title">
+  <div class="modal" role="document" tabindex="0">
+    <h3 id="modal-program-title">Add/Edit Program</h3>
+    <form id="program-modal-form" novalidate="">
+      <input type="hidden" id="program-index" value="-1">
+      <label for="program-wing-modal">Wing:</label>
+      <select id="program-wing-modal" name="wing" required="">
+        <option value="">Select Wing</option>
+      </select>
+      <label for="program-name-modal">Program Name:</label>
+      <input type="text" id="program-name-modal" name="name" required="">
+      <label for="program-description-modal">Description:</label>
+      <input type="text" id="program-description-modal" name="description" required="">
+      <label for="program-date-modal">Date:</label>
+      <input type="date" id="program-date-modal" name="date" required="">
+      <label for="program-result-modal">Result:</label>
+      <select id="program-result-modal" name="result" required="">
+        <option value="">Select result</option>
+        <option value="Passed">Passed</option>
+        <option value="Failed">Failed</option>
+        <option value="Ongoing">Ongoing</option>
+      </select>
+      <div class="btn-row">
+        <button type="button" id="program-cancel-btn" class="btn-cancel">Cancel</button>
+        <input type="submit" value="Save">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Result Modal -->
+<div class="modal-overlay" id="modal-result-form" role="dialog" aria-modal="true" aria-labelledby="modal-result-title">
+  <div class="modal" role="document" tabindex="0">
+    <h3 id="modal-result-title">Add/Edit Program Result</h3>
+    <form id="result-modal-form" novalidate="">
+      <input type="hidden" id="result-index" value="-1">
+      
+      <label for="result-program-modal">Program:</label>
+      <select id="result-program-modal" name="program" required="">
+        <option value="">Select Program</option>
+      </select>
+      
+      <label for="result-date-modal">Date:</label>
+      <input type="date" id="result-date-modal" name="date" required="">
+      
+      <div class="result-positions">
+        <div class="position-card gold">
+          <h4>1st Position</h4>
+          <label for="result-first-modal">Winner:</label>
+          <input type="text" id="result-first-modal" name="first" required="">
+        </div>
+        
+        <div class="position-card silver">
+          <h4>2nd Position</h4>
+          <label for="result-second-modal">Runner-up:</label>
+          <input type="text" id="result-second-modal" name="second" required="">
+        </div>
+        
+        <div class="position-card bronze">
+          <h4>3rd Position</h4>
+          <label for="result-third-modal">Second Runner-up:</label>
+          <input type="text" id="result-third-modal" name="third" required="">
+        </div>
+      </div>
+      
+      <div class="btn-row">
+        <button type="button" id="result-cancel-btn" class="btn-cancel">Cancel</button>
+        <input type="submit" value="Save">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Admin Password Modal -->
+<div class="modal-overlay" id="modal-admin-password" role="dialog" aria-modal="true" aria-labelledby="modal-admin-password-title">
+  <div class="modal admin-password-modal" role="document" tabindex="0">
+    <h3 id="modal-admin-password-title">Admin Authentication</h3>
+    <form id="admin-password-form" novalidate="">
+      <label for="admin-password-input">Enter Admin Password:</label>
+      <input type="password" id="admin-password-input" required="">
+      <div class="btn-row">
+        <button type="button" id="admin-cancel-btn" class="btn-cancel">Cancel</button>
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Image Preview Modal -->
+<div class="modal-overlay" id="modal-image-preview" role="dialog" aria-modal="true" aria-labelledby="modal-image-preview-title">
+  <div class="modal" role="document" tabindex="0" style="max-width: 90%; max-height: 90%;">
+    <h3 id="modal-image-preview-title" style="margin-bottom: 1rem;"></h3>
+    <img id="preview-image" src="" alt="Preview" style="max-width: 100%; max-height: 70vh; display: block; margin: 0 auto;" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/25382037-3ab6-4ef0-b905-9824914f2bf4.png">
+    <div class="btn-row" style="margin-top: 1rem;">
+      <a id="download-image-btn" class="download-btn" style="text-decoration: none;">Download</a>
+      <button type="button" id="close-preview-btn" class="btn-cancel">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Wing Detail Modal -->
+<div class="modal-overlay wing-detail-modal" id="modal-wing-detail" role="dialog" aria-modal="true" aria-labelledby="modal-wing-detail-title">
+  <div class="modal" role="document" tabindex="0">
+    <h3 id="modal-wing-detail-title">Wing/Club Details: <span id="wing-detail-name"></span></h3>
+    <div class="wing-detail-content">
+      <div class="wing-chairmen">
+        <div class="chairman-card">
+          <img id="chairman1-img" src="https://via.placeholder.com/100/cccccc/FFFFFF?text=No+Image" alt="Chairman 1">
+          <h4 id="chairman1-name"></h4>
+          <p>Chairman 1</p>
+          <div class="upload-chairman-image-form" style="display: none;">
+            <label for="chairman1-image-upload">Upload Image:</label>
+            <input type="file" id="chairman1-image-upload" accept="image/*">
+            <button class="upload-chairman-btn" data-chairman="1">Upload</button>
+          </div>
+        </div>
+        <div class="chairman-card">
+          <img id="chairman2-img" src="https://via.placeholder.com/100/cccccc/FFFFFF?text=No+Image" alt="Chairman 2">
+          <h4 id="chairman2-name"></h4>
+          <p>Chairman 2</p>
+          <div class="upload-chairman-image-form" style="display: none;">
+            <label for="chairman2-image-upload">Upload Image:</label>
+            <input type="file" id="chairman2-image-upload" accept="image/*">
+            <button class="upload-chairman-btn" data-chairman="2">Upload</button>
+          </div>
+        </div>
+      </div>
+      <h4>Programs by this Wing/Club:</h4>
+      <div class="wing-programs-list">
+        <ul id="wing-programs-list">
+          <li>No programs found for this wing.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button type="button" id="wing-detail-close-btn" class="btn-cancel">Close</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Toast notification -->
+<div id="toast" role="alert" aria-live="assertive" aria-atomic="true" class="">Logged out successfully</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+<script>
+  // Script for advanced Shaad Mates Website
+
+  (() => {
+    "use strict";
+
+    // Basic utility functions
+    const qs = (selector, context = document) => context.querySelector(selector);
+    const qsa = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+
+    // Toast notifier
+    const toast = qs('#toast');
+    function showToast(message, isError = false) {
+      toast.textContent = message;
+      toast.classList.toggle('error', isError);
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // Navigation
+    const navLinks = qsa('nav ul li a[data-section]');
+    const sections = qsa('main section');
+
+    // Menu toggle button for mobile
+    const menuToggleBtn = qs('#menu-toggle');
+    const navList = qs('#nav-list');
+
+    menuToggleBtn.addEventListener('click', () => {
+      const expanded = menuToggleBtn.getAttribute('aria-expanded') === 'true';
+      menuToggleBtn.setAttribute('aria-expanded', !expanded);
+      navList.classList.toggle('show');
+    });
+
+    // Close mobile menu on link click and toggle submenu on mobile
+    navLinks.forEach(link=>{
+      link.addEventListener('click', e=>{
+        e.preventDefault();
+        const sectionId = link.getAttribute('data-section');
+        if(sectionId){
+          setActiveSection(sectionId);
+          if(window.innerWidth < 720) {
+            navList.classList.remove('show');
+            menuToggleBtn.setAttribute('aria-expanded', false);
+          }
+        }
+      });
+    });
+
+    // Enhanced dropdown toggle for mobile with keyboard support
+    qsa('nav li.has-submenu > a').forEach(anchor=>{
+      anchor.addEventListener('click', e=>{
+        if(window.innerWidth < 720){
+          e.preventDefault();
+          const liParent = anchor.parentElement;
+          const expanded = liParent.getAttribute('aria-expanded') === 'true';
+          liParent.setAttribute('aria-expanded', !expanded);
+          liParent.classList.toggle('open', !expanded);
+        }
+      });
+      anchor.addEventListener('keydown', e=>{
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          anchor.click();
+        }
+      });
+    });
+
+       // Section management
+    let currentSection = '#home';
+
+    function setActiveSection(id){
+      if(currentSection === id) return;
+      const prevSection = qs(`main section.active`);
+      if(prevSection) prevSection.classList.remove('active');
+      const newSection = qs(`main section#${id}`);
+      if(newSection){
+        newSection.classList.add('active');
+        newSection.focus();
+        currentSection = id;
+        highlightNavLink(id);
+      }
+    }
+
+    // ... other functions ...
+
+    // Set home page as active on load
+    setActiveSection('#home');
+
+
+    // Highlight active nav link
+    function highlightNavLink(id) {
+      navLinks.forEach(link => {
+        const show = link.getAttribute('data-section') === id;
+        link.setAttribute('aria-current', show ? 'page' : 'false');
+        if(show){
+          link.parentElement.classList.add('active');
+        }else{
+          link.parentElement.classList.remove('active');
+        }
+      });
+    }
+
+    // DARK MODE TOGGLE
+    const themeToggleBtn = qs('#theme-toggle');
+    const root = document.documentElement;
+    // Load theme from localStorage or default light
+    const savedTheme = localStorage.getItem('shaad-theme') || 'light';
+    setTheme(savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'light';
+      const newTheme = current === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+    });
+
+    function setTheme(theme){
+      root.setAttribute('data-theme', theme);
+      themeToggleBtn.innerHTML = theme === 'light' ? '&#9790;' : '&#9728;';
+      themeToggleBtn.setAttribute('aria-pressed', theme === 'dark');
+      localStorage.setItem('shaad-theme', theme);
+    }
+
+    // Flip cards interactive (Core Committee)
+    qsa('.card').forEach(card=>{
+      card.addEventListener('click', ()=>{
+        card.classList.toggle('flipped');
+      });
+      card.addEventListener('keydown', e => {
+        if(e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          card.classList.toggle('flipped');
+        }
+      });
+    });
+
+    // LOCAL STORAGE WRAPPER
+    const STORAGE_KEYS = {
+      students: 'shaad_students',
+      wings: 'shaad_wings',
+      programs: 'shaad_programs',
+      results: 'shaad_results',
+      adminPassword: 'shaad_admin_password',
+      gallery: 'shaad_gallery_images',
+      videos: 'shaad_videos',
+      library: 'shaad_library'
+    };
+
+    const loadData = key => {
+      const data = localStorage.getItem(key);
+      return data ? JSON.parse(data) : [];
+    };
+    const saveData = (key, data) => {
+      localStorage.setItem(key, JSON.stringify(data));
+    };
+
+    // ADMIN PASSWORD MANAGEMENT
+    const ADMIN_PASSWORD = "admin123"; // Default password
+    let isAdminAuthenticated = false;
+    
+    // Check if password is set in localStorage
+    if(!localStorage.getItem(STORAGE_KEYS.adminPassword)) {
+      localStorage.setItem(STORAGE_KEYS.adminPassword, ADMIN_PASSWORD);
+    }
+    
+    // Admin password modal
+    const adminPasswordModal = qs('#modal-admin-password');
+    const adminPasswordForm = qs('#admin-password-form');
+    const adminPasswordInput = qs('#admin-password-input');
+    
+    function openAdminPasswordModal(callback) {
+      adminPasswordModal.callback = callback;
+      adminPasswordModal.classList.add('active');
+      adminPasswordInput.focus();
+    }
+    
+    function closeAdminPasswordModal() {
+      adminPasswordModal.classList.remove('active');
+      adminPasswordInput.value = '';
+    }
+    
+    adminPasswordForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const enteredPassword = adminPasswordInput.value;
+      const storedPassword = localStorage.getItem(STORAGE_KEYS.adminPassword);
+      
+      if(enteredPassword === storedPassword) {
+        isAdminAuthenticated = true;
+        showToast("Admin access granted!");
+        closeAdminPasswordModal();
+        updateAdminUI();
+        
+        // Execute the callback function that required admin access
+        if(typeof adminPasswordModal.callback === 'function') {
+          adminPasswordModal.callback();
+        }
+      } else {
+        showToast("Incorrect password!", true);
+        adminPasswordInput.focus();
+      }
+    });
+    
+    qs('#admin-cancel-btn').addEventListener('click', closeAdminPasswordModal);
+    adminPasswordModal.addEventListener('click', e => {
+      if(e.target === adminPasswordModal) closeAdminPasswordModal();
+    });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && adminPasswordModal.classList.contains('active')) {
+        closeAdminPasswordModal();
+      }
+    });
+    
+    // Update admin UI across all sections
+    function updateAdminUI() {
+      // Toggle admin buttons
+      qsa('.admin-login-btn').forEach(btn => btn.style.display = isAdminAuthenticated ? 'none' : 'block');
+      qsa('.admin-logout-btn').forEach(btn => btn.style.display = isAdminAuthenticated ? 'block' : 'none');
+      
+      // Toggle add buttons
+      qs('#add-student-btn').style.display = isAdminAuthenticated ? 'block' : 'none';
+      qs('#add-wing-btn').style.display = isAdminAuthenticated ? 'block' : 'none';
+      qs('#add-result-btn').style.display = isAdminAuthenticated ? 'block' : 'none';
+      qs('#program-admin').style.display = isAdminAuthenticated ? 'block' : 'none';
+      
+      // Toggle upload forms
+      qs('#gallery-upload-form').style.display = isAdminAuthenticated ? 'block' : 'none';
+      qs('#video-upload-form').style.display = isAdminAuthenticated ? 'block' : 'none';
+      qs('#library-upload-form').style.display = isAdminAuthenticated ? 'block' : 'none';
+
+      // Toggle chairman image upload forms in wing detail modal
+      qsa('.wing-detail-modal .upload-chairman-image-form').forEach(form => {
+        form.style.display = isAdminAuthenticated ? 'block' : 'none';
+      });
+      
+      // Re-render tables and gallery to show/hide action buttons
+      renderStudents(searchStudentsInput.value);
+      renderWings(searchWingsInput.value);
+      renderPrograms(searchProgramsInput.value);
+      renderResults();
+      renderGallery();
+      renderVideos();
+      renderLibrary();
+    }
+    
+    // Admin login/logout buttons
+    qsa('.admin-login-btn').forEach(btn => {
+      btn.addEventListener('click', () => openAdminPasswordModal(updateAdminUI));
+    });
+    
+    qsa('.admin-logout-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        isAdminAuthenticated = false;
+        showToast("Logged out successfully");
+        updateAdminUI();
+      });
+    });
+
+    /* =================== STUDENTS ===================== */
+    let students = loadData(STORAGE_KEYS.students);
+    const studentsTbody = qs('#students-tbody');
+    const searchStudentsInput = qs('#search-students');
+
+    function renderStudents(filter = '') {
+      studentsTbody.innerHTML = '';
+      let filtered = students.slice();
+      if(filter.trim() !== ''){
+        const f = filter.toLowerCase();
+        filtered = filtered.filter(s => s.name.toLowerCase().includes(f) || s.adno.toLowerCase().includes(f) || (s.address && s.address.toLowerCase().includes(f)));
+      }
+      filtered.forEach((stu,i) => {
+        const tr = document.createElement('tr');
+        tr.dataset.index = i; // Add index for click event
+        tr.style.cursor = 'pointer'; // Indicate clickable row
+        tr.innerHTML = `
+          <td>${stu.sno}</td>
+          <td>${escapeHtml(stu.name)}</td>
+          <td>${escapeHtml(stu.adno)}</td>
+          <td>${escapeHtml(stu.mobile)}</td>
+          <td>${escapeHtml(stu.address || 'N/A')}</td> <!-- Display Address -->
+          <td>
+            ${isAdminAuthenticated ? `
+              <button class="action-btn edit" data-index="${i}" aria-label="Edit student ${escapeHtml(stu.name)}">✏️</button>
+              <button class="action-btn delete" data-index="${i}" aria-label="Delete student ${escapeHtml(stu.name)}">🗑️</button>
+            ` : ''}
+          </td>
+        `;
+        studentsTbody.appendChild(tr);
+      });
+    }
+
+    // Filtering students
+    searchStudentsInput.addEventListener('input', () => {
+      renderStudents(searchStudentsInput.value);
+    });
+
+    // Escape HTML to prevent injection
+    function escapeHtml(text){
+      return text.replace(/[&<>"'`=\/]/g, s => {
+        return {
+          '&':'&amp;',
+          '<':'&lt;',
+          '>':'&gt;',
+          '"':'&quot;',
+          "'":'&#39;',
+          '/':'&#x2F;',
+          '`':'&#x60;',
+          '=':'&#x3D;'
+        }[s];
+      });
+    }
+
+    /* STUDENT MODAL */
+    const modalStudentForm = qs('#modal-student-form');
+    const studentModalForm = qs('#student-modal-form');
+    const studentAddBtn = qs('#add-student-btn');
+    const studentIndexInput = qs('#student-index');
+
+    function openStudentModal(editIndex = -1){
+      if (!isAdminAuthenticated) {
+        openAdminPasswordModal(() => openStudentModal(editIndex));
+        return;
+      }
+      
+      if(editIndex >= 0){
+        const s = students[editIndex];
+        studentModalForm['sno'].value = s.sno;
+        studentModalForm['name'].value = s.name;
+        studentModalForm['adno'].value = s.adno;
+        studentModalForm['mobile'].value = s.mobile;
+        studentModalForm['address'].value = s.address || ''; // Populate address
+        studentIndexInput.value = editIndex;
+      }else{
+        studentModalForm.reset();
+        studentIndexInput.value = -1;
+      }
+      modalStudentForm.classList.add('active');
+      modalStudentForm.querySelector('.modal').focus();
+    }
+    function closeStudentModal(){
+      modalStudentForm.classList.remove('active');
+    }
+    studentAddBtn.addEventListener('click', () => openStudentModal(-1));
+    qs('#student-cancel-btn').addEventListener('click', closeStudentModal);
+    modalStudentForm.addEventListener('click', e => {
+      if(e.target === modalStudentForm) closeStudentModal();
+    });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && modalStudentForm.classList.contains('active')){
+        closeStudentModal();
+      }
+    });
+
+    studentModalForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const sno = studentModalForm['sno'].value.trim();
+      const name = studentModalForm['name'].value.trim();
+      const adno = studentModalForm['adno'].value.trim();
+      const mobile = studentModalForm['mobile'].value.trim();
+      const address = studentModalForm['address'].value.trim(); // Get address
+      const imageFile = studentModalForm['image'].files[0];
+      
+      if(!sno || !name || !adno || !mobile || !address){ // Validate address
+        showToast("Please fill in all student details!", true);
+        return;
+      }
+      
+      const reader = new FileReader();
+      if (imageFile) {
+        reader.onload = function(e) {
+          saveStudent(e.target.result);
+        };
+        reader.readAsDataURL(imageFile);
+      } else {
+        saveStudent();
+      }
+      
+      function saveStudent(imageUrl = '') {
+        const idx = +studentIndexInput.value;
+        const studentData = {sno, name, adno, mobile, address}; // Include address
+        if (imageUrl) studentData.image = imageUrl;
+        
+        if(idx >= 0){
+          // Edit existing
+          students[idx] = studentData;
+          showToast(`Student "${name}" updated successfully.`);
+        } else {
+          // Add new
+          students.push(studentData);
+          showToast(`Student "${name}" added successfully.`);
+        }
+        saveData(STORAGE_KEYS.students, students);
+        renderStudents(searchStudentsInput.value);
+        closeStudentModal();
+      }
+    });
+
+    /* STUDENT DETAIL MODAL */
+    const modalStudentDetail = qs('#modal-student-detail');
+    const studentDetailName = qs('#student-detail-name');
+    const studentDetailSno = qs('#student-detail-sno');
+    const studentDetailAdno = qs('#student-detail-adno');
+    const studentDetailMobile = qs('#student-detail-mobile');
+    const studentDetailAddress = qs('#student-detail-address'); // New element for address
+    const studentDetailImage = qs('#student-detail-image');
+    const studentPostsContent = qs('#student-posts-content');
+    
+    function openStudentDetailModal(index) {
+      const student = students[index];
+      studentDetailName.textContent = student.name;
+      studentDetailSno.textContent = student.sno;
+      studentDetailAdno.textContent = student.adno;
+      studentDetailMobile.textContent = student.mobile;
+      studentDetailAddress.textContent = student.address || 'N/A'; // Display address
+      studentDetailImage.src = student.image || 'https://via.placeholder.com/150/cccccc/FFFFFF?text=No+Image';
+      
+      // Find student's posts in core committee
+      const coreCommitteePosts = [];
+      const coreCommittee = [
+        { name: "Dr. Abdullah", role: "Advisory Board" }, // Added new member
+        { name: "Shekh Nabil", role: "President" },
+        { name: "Shafi Alam", role: "Secretary" },
+        { name: "Arif Hussain", role: "Joint Secretary" },
+        { name: "Arman Khan", role: "Treasurer" }
+      ];
+      
+      const corePost = coreCommittee.find(member => member.name === student.name);
+      if (corePost) {
+        coreCommitteePosts.push(`<p><strong>Core Committee:</strong> ${corePost.role}</p>`);
+      }
+      
+      // Find student's posts as chairman in wings/clubs
+      const wingPosts = [];
+      const wingsData = loadData(STORAGE_KEYS.wings);
+      wingsData.forEach(wing => {
+        if (wing.chairman1 === student.name) {
+          wingPosts.push(`<p><strong>Chairman 1:</strong> ${wing.name}</p>`);
+        }
+        if (wing.chairman2 === student.name) {
+          wingPosts.push(`<p><strong>Chairman 2:</strong> ${wing.name}</p>`);
+        }
+      });
+      
+      // Find student's positions in results
+      const resultPosts = [];
+      const resultsData = loadData(STORAGE_KEYS.results);
+      resultsData.forEach(result => {
+        if (result.first === student.name) {
+          resultPosts.push(`<p><strong>1st Position:</strong> ${result.program}</p>`);
+        }
+        if (result.second === student.name) {
+          resultPosts.push(`<p><strong>2nd Position:</strong> ${result.program}</p>`);
+        }
+        if (result.third === student.name) {
+          resultPosts.push(`<p><strong>3rd Position:</strong> ${result.program}</p>`);
+        }
+      });
+      
+      // Combine all posts
+      const allPosts = [...coreCommitteePosts, ...wingPosts, ...resultPosts];
+      
+      if (allPosts.length > 0) {
+        studentPostsContent.innerHTML = allPosts.join('');
+        studentPostsContent.classList.remove('no-posts');
+      } else {
+        studentPostsContent.innerHTML = 'You have not any post in Shaad Mates';
+        studentPostsContent.classList.add('no-posts');
+      }
+      
+      modalStudentDetail.classList.add('active');
+      modalStudentDetail.querySelector('.modal').focus();
+    }
+    
+    function closeStudentDetailModal() {
+      modalStudentDetail.classList.remove('active');
+    }
+    
+    qs('#student-detail-close-btn').addEventListener('click', closeStudentDetailModal);
+    modalStudentDetail.addEventListener('click', e => {
+      if (e.target === modalStudentDetail) closeStudentDetailModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modalStudentDetail.classList.contains('active')) {
+        closeStudentDetailModal();
+      }
+    });
+
+    // Edit and delete buttons using event delegation
+    studentsTbody.addEventListener('click', e => {
+      if (!isAdminAuthenticated && (e.target.classList.contains('edit') || e.target.classList.contains('delete'))) {
+        openAdminPasswordModal();
+        return;
+      }
+      
+      if(e.target.classList.contains('edit')){
+        const idx = +e.target.dataset.index;
+        openStudentModal(idx);
+      }
+      if(e.target.classList.contains('delete')){
+        const idx = +e.target.dataset.index;
+        if(confirm(`Delete student "${students[idx].name}"?`)){
+          students.splice(idx,1);
+          saveData(STORAGE_KEYS.students, students);
+          renderStudents(searchStudentsInput.value);
+          showToast("Student deleted.");
+        }
+      }
+      if (e.target.tagName === 'TD' || e.target.tagName === 'TR') {
+        const tr = e.target.closest('tr');
+        if (tr && tr.dataset.index) {
+          openStudentDetailModal(+tr.dataset.index);
+        }
+      }
+    });
+
+    renderStudents();
+
+    /* =================== WINGS & CLUBS ===================== */
+    let wings = loadData(STORAGE_KEYS.wings);
+    const wingsTbody = qs('#wings-tbody');
+    const searchWingsInput = qs('#search-wings');
+    const addWingBtn = qs('#add-wing-btn');
+
+    function renderWings(filter = '') {
+      wingsTbody.innerHTML = '';
+      let filtered = wings.slice();
+      if(filter.trim() !== ''){
+        const f = filter.toLowerCase();
+        filtered = filtered.filter(w => w.name.toLowerCase().includes(f) || w.chairman1.toLowerCase().includes(f) || (w.chairman2 && w.chairman2.toLowerCase().includes(f)));
+      }
+      filtered.forEach((wing,i)=>{
+        const tr = document.createElement('tr');
+        tr.dataset.index = i; // Add index for click event
+        tr.style.cursor = 'pointer'; // Indicate clickable row
+        tr.innerHTML = `
+          <td>${i+1}</td>
+          <td>${escapeHtml(wing.name)}</td>
+          <td>${escapeHtml(wing.chairman1)}</td>
+          <td>${escapeHtml(wing.chairman2 || 'N/A')}</td>
+          <td>
+            ${isAdminAuthenticated ? `
+              <button class="action-btn edit" data-index="${i}" aria-label="Edit wing ${escapeHtml(wing.name)}">✏️</button>
+              <button class="action-btn delete" data-index="${i}" aria-label="Delete wing ${escapeHtml(wing.name)}">🗑️</button>
+            ` : ''}
+          </td>`;
+        wingsTbody.appendChild(tr);
+      });
+    }
+    searchWingsInput.addEventListener('input', ()=>renderWings(searchWingsInput.value));
+
+    /* WING MODAL */
+    const modalWingForm = qs('#modal-wing-form');
+    const wingModalForm = qs('#wing-modal-form');
+    const wingIndexInput = qs('#wing-index');
+
+    function openWingModal(editIndex = -1){
+      if (!isAdminAuthenticated) {
+        openAdminPasswordModal(() => openWingModal(editIndex));
+        return;
+      }
+      
+      if(editIndex >= 0){
+        const w = wings[editIndex];
+        wingModalForm['name'].value = w.name;
+        wingModalForm['chairman1'].value = w.chairman1;
+        wingModalForm['chairman2'].value = w.chairman2 || '';
+        wingIndexInput.value = editIndex;
+      }else{
+        wingModalForm.reset();
+        wingIndexInput.value = -1;
+      }
+      modalWingForm.classList.add('active');
+      modalWingForm.querySelector('.modal').focus();
+    }
+    function closeWingModal(){
+      modalWingForm.classList.remove('active');
+    }
+    addWingBtn.addEventListener('click', () => openWingModal(-1));
+    qs('#wing-cancel-btn').addEventListener('click', closeWingModal);
+    modalWingForm.addEventListener('click', e => {
+      if(e.target === modalWingForm) closeWingModal();
+    });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && modalWingForm.classList.contains('active')){
+        closeWingModal();
+      }
+    });
+
+    wingModalForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      const name = wingModalForm['name'].value.trim();
+      const chairman1 = wingModalForm['chairman1'].value.trim();
+      const chairman2 = wingModalForm['chairman2'].value.trim();
+      const chairman1ImageFile = wingModalForm['chairman1_image'].files[0];
+      const chairman2ImageFile = wingModalForm['chairman2_image'].files[0];
+      
+      if(!name || !chairman1){
+        showToast("Please fill wing name and at least Chairman 1 name!", true);
+        return;
+      }
+      
+      const idx = +wingIndexInput.value;
+      
+      // Function to process image uploads
+      const processImages = (chairman1Img = '', chairman2Img = '') => {
+        if(idx >= 0){
+          // Edit existing
+          wings[idx] = {
+            name, 
+            chairman1, 
+            chairman2,
+            chairman1_img: chairman1Img || wings[idx].chairman1_img || '',
+            chairman2_img: chairman2Img || wings[idx].chairman2_img || ''
+          };
+          showToast(`Wing "${name}" updated successfully.`);
+        }else{
+          // Add new
+          wings.push({
+            name, 
+            chairman1, 
+            chairman2,
+            chairman1_img: chairman1Img,
+            chairman2_img: chairman2Img
+          });
+          showToast(`Wing "${name}" added successfully.`);
+        }
+        saveData(STORAGE_KEYS.wings, wings);
+        renderWings(searchWingsInput.value);
+        closeWingModal();
+      };
+      
+      // Process chairman 1 image if uploaded
+      if (chairman1ImageFile) {
+        const reader1 = new FileReader();
+        reader1.onload = function(e1) {
+          // Process chairman 2 image if uploaded
+          if (chairman2ImageFile) {
+            const reader2 = new FileReader();
+            reader2.onload = function(e2) {
+              processImages(e1.target.result, e2.target.result);
+            };
+            reader2.readAsDataURL(chairman2ImageFile);
+          } else {
+            processImages(e1.target.result, '');
+          }
+        };
+        reader1.readAsDataURL(chairman1ImageFile);
+      } 
+      // Process only chairman 2 image if uploaded
+      else if (chairman2ImageFile) {
+        const reader2 = new FileReader();
+        reader2.onload = function(e2) {
+          processImages('', e2.target.result);
+        };
+        reader2.readAsDataURL(chairman2ImageFile);
+      } 
+      // No images uploaded
+      else {
+        processImages();
+      }
+    });
+
+    wingsTbody.addEventListener('click', e=>{
+      if (e.target.classList.contains('edit')) {
+        if (!isAdminAuthenticated) { openAdminPasswordModal(); return; }
+        const idx = +e.target.dataset.index;
+        openWingModal(idx);
+      } else if (e.target.classList.contains('delete')) {
+        if (!isAdminAuthenticated) { openAdminPasswordModal(); return; }
+        const idx = +e.target.dataset.index;
+        if(confirm(`Delete wing "${wings[idx].name}"?`)){
+          wings.splice(idx,1);
+          saveData(STORAGE_KEYS.wings,wings);
+          renderWings(searchWingsInput.value);
+          showToast("Wing deleted.");
+        }
+      } else if (e.target.tagName === 'TD' || e.target.tagName === 'TR') {
+        const tr = e.target.closest('tr');
+        if (tr && tr.dataset.index) {
+          openWingDetailModal(+tr.dataset.index);
+        }
+      }
+    });
+
+    renderWings();
+
+    /* WING DETAIL MODAL */
+    const modalWingDetail = qs('#modal-wing-detail');
+    const wingDetailName = qs('#wing-detail-name');
+    const chairman1Name = qs('#chairman1-name');
+    const chairman2Name = qs('#chairman2-name');
+    const chairman1Img = qs('#chairman1-img');
+    const chairman2Img = qs('#chairman2-img');
+    const wingProgramsList = qs('#wing-programs-list');
+    let currentWingIndex = -1; // To keep track of the wing being viewed/edited
+
+    function openWingDetailModal(index) {
+      currentWingIndex = index;
+      const wing = wings[index];
+      wingDetailName.textContent = wing.name;
+      chairman1Name.textContent = wing.chairman1;
+      chairman2Name.textContent = wing.chairman2 || 'N/A';
+      chairman1Img.src = wing.chairman1_img || 'https://via.placeholder.com/100/cccccc/FFFFFF?text=No+Image';
+      chairman2Img.src = wing.chairman2_img || 'https://via.placeholder.com/100/cccccc/FFFFFF?text=No+Image';
+
+      // Filter programs for this wing
+      const programsForWing = programs.filter(p => p.wing.toLowerCase() === wing.name.toLowerCase());
+      wingProgramsList.innerHTML = '';
+      if (programsForWing.length > 0) {
+        programsForWing.forEach(p => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${escapeHtml(p.name)}</strong>: ${new Date(p.date).toLocaleDateString()} - ${escapeHtml(p.result)}`;
+          wingProgramsList.appendChild(li);
+        });
+      } else {
+        wingProgramsList.innerHTML = '<li>No programs found for this wing.</li>';
+      }
+
+      // Update admin UI for image uploads
+      updateAdminUI(); // This will show/hide the upload forms based on isAdminAuthenticated
+
+      modalWingDetail.classList.add('active');
+      modalWingDetail.querySelector('.modal').focus();
+    }
+
+    function closeWingDetailModal() {
+      modalWingDetail.classList.remove('active');
+      currentWingIndex = -1;
+    }
+
+    qs('#wing-detail-close-btn').addEventListener('click', closeWingDetailModal);
+    modalWingDetail.addEventListener('click', e => {
+      if (e.target === modalWingDetail) closeWingDetailModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modalWingDetail.classList.contains('active')) {
+        closeWingDetailModal();
+      }
+    });
+
+    // Chairman image upload logic
+    qsa('.upload-chairman-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        if (!isAdminAuthenticated) {
+          openAdminPasswordModal();
+          return;
+        }
+
+        const chairmanNum = e.target.dataset.chairman;
+        const fileInput = qs(`#chairman${chairmanNum}-image-upload`);
+        const file = fileInput.files[0];
+
+        if (file && currentWingIndex !== -1) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            wings[currentWingIndex][`chairman${chairmanNum}_img`] = event.target.result;
+            saveData(STORAGE_KEYS.wings, wings);
+            showToast(`Chairman ${chairmanNum} image uploaded successfully.`);
+            // Re-render the modal to show the new image
+            openWingDetailModal(currentWingIndex);
+          };
+          reader.readAsDataURL(file);
+        } else {
+          showToast("Please select an image file.", true);
+        }
+      });
+    });
+
+
+    /* =================== PROGRAMS ===================== */
+    let programs = loadData(STORAGE_KEYS.programs);
+    const programsContainer = qs('#programs-container');
+    const addProgramBtn = qs('#add-program-btn');
+    const searchProgramsInput = qs('#search-programs');
+
+    function renderPrograms(filter = '') {
+      programsContainer.innerHTML = '';
+      let filtered = programs.slice();
+      if(filter.trim() !== ''){
+        const f = filter.toLowerCase();
+        filtered = filtered.filter(p => 
+          p.name.toLowerCase().includes(f) || 
+          p.wing.toLowerCase().includes(f) || 
+          p.description.toLowerCase().includes(f) ||
+          p.result.toLowerCase().includes(f)
+        );
+      }
+
+      // Group programs by month and year
+      const groupedPrograms = filtered.reduce((acc, program) => {
+        const date = new Date(program.date);
+        const year = date.getFullYear();
+        const month = date.toLocaleString('en-US', { month: 'long' });
+        const key = `${month} ${year}`;
+        if (!acc[key]) {
+          acc[key] = [];
+        }
+        acc[key].push(program);
+        return acc;
+      }, {});
+
+      // Sort months chronologically (e.g., January 2025, February 2025, ...)
+      const sortedKeys = Object.keys(groupedPrograms).sort((a, b) => {
+        const [monthA, yearA] = a.split(' ');
+        const [monthB, yearB] = b.split(' ');
+        const dateA = new Date(`${monthA} 1, ${yearA}`);
+        const dateB = new Date(`${monthB} 1, ${yearB}`);
+        return dateA - dateB;
+      }).reverse(); // Display most recent first
+
+      if (sortedKeys.length === 0) {
+        programsContainer.innerHTML = '<p>No programs found.</p>';
+        return;
+      }
+
+      sortedKeys.forEach(key => {
+        const monthSection = document.createElement('div');
+        monthSection.className = 'program-month-section';
+        monthSection.innerHTML = `
+          <h3>
+            ${key}
+            ${isAdminAuthenticated ? `<button class="download-month-programs-btn" data-month-year="${key}">Download PDF</button>` : ''}
+          </h3>
+          <div class="program-table-container">
+            <table aria-label="Programs for ${key}" role="grid">
+              <thead>
+                <tr>
+                  <th scope="col" tabindex="0">#</th>
+                  <th scope="col" tabindex="0">Wing</th>
+                  <th scope="col" tabindex="0">Program Name</th>
+                  <th scope="col" tabindex="0">Description</th>
+                  <th scope="col" tabindex="0">Date</th>
+                  <th scope="col" tabindex="0">Result</th>
+                  <th scope="col" aria-label="Actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        `;
+        const tbody = monthSection.querySelector('tbody');
+        groupedPrograms[key].forEach((prog, i) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${i+1}</td>
+            <td>${escapeHtml(prog.wing)}</td>
+            <td>${escapeHtml(prog.name)}</td>
+            <td>${escapeHtml(prog.description)}</td>
+            <td>${new Date(prog.date).toLocaleDateString()}</td>
+            <td>${escapeHtml(prog.result)}</td>
+            <td>
+              ${isAdminAuthenticated ? `
+                <button class="action-btn edit" data-index="${programs.indexOf(prog)}" aria-label="Edit program ${escapeHtml(prog.name)}">✏️</button>
+                <button class="action-btn delete" data-index="${programs.indexOf(prog)}" aria-label="Delete program ${escapeHtml(prog.name)}">🗑️</button>
+              ` : ''}
+            </td>`;
+          tbody.appendChild(tr);
+        });
+        programsContainer.appendChild(monthSection);
+      });
+
+      // Add event listeners for download buttons
+      qsa('.download-month-programs-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const monthYear = e.target.dataset.monthYear;
+          const programsToDownload = groupedPrograms[monthYear];
+          downloadProgramsAsPdf(monthYear, programsToDownload);
+        });
+      });
+    }
+
+    // Function to download programs as PDF
+    async function downloadProgramsAsPdf(monthYear, programsData) {
+      if (typeof window.jspdf.jsPDF === 'undefined') {
+        showToast("PDF generation library not loaded. Please try again.", true);
+        return;
+      }
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFontSize(18);
+      doc.text(`Programs for ${monthYear}`, 14, 22);
+
+      const tableColumn = ["#", "Wing", "Program Name", "Description", "Date", "Result"];
+      const tableRows = [];
+
+      programsData.forEach((program, index) => {
+        const programData = [
+          index + 1,
+          program.wing,
+          program.name,
+          program.description,
+          new Date(program.date).toLocaleDateString(),
+          program.result
+        ];
+        tableRows.push(programData);
+      });
+
+      doc.autoTable({
+        head: [tableColumn],
+        body: tableRows,
+        startY: 30,
+        theme: 'grid',
+        headStyles: { fillColor: [0, 77, 64] }, // primary-dark
+        styles: { fontSize: 9, cellPadding: 2 },
+        columnStyles: {
+          0: { cellWidth: 10 },
+          1: { cellWidth: 25 },
+          2: { cellWidth: 40 },
+          3: { cellWidth: 60 },
+          4: { cellWidth: 25 },
+          5: { cellWidth: 20 }
+        }
+      });
+
+      doc.save(`ShaadMates_Programs_${monthYear.replace(/ /g, '_')}.pdf`);
+      showToast(`Programs for ${monthYear} downloaded as PDF.`);
+    }
+
+
+    searchProgramsInput.addEventListener('input', () => renderPrograms(searchProgramsInput.value));
+
+    /* PROGRAM MODAL */
+    const modalProgramForm = qs('#modal-program-form');
+    const programModalForm = qs('#program-modal-form');
+    const programIndexInput = qs('#program-index');
+    const programWingSelect = qs('#program-wing-modal');
+
+    function openProgramModal(editIndex = -1){
+      if (!isAdminAuthenticated) {
+        openAdminPasswordModal(() => openProgramModal(editIndex));
+        return;
+      }
+      
+      // Populate wing dropdown
+      programWingSelect.innerHTML = '<option value="">Select Wing</option>';
+      wings.forEach(wing => {
+        const option = document.createElement('option');
+        option.value = wing.name;
+        option.textContent = wing.name;
+        programWingSelect.appendChild(option);
+      });
+      
+      if(editIndex >= 0){
+        const p = programs[editIndex];
+        programModalForm['wing'].value = p.wing;
+        programModalForm['name'].value = p.name;
+        programModalForm['description'].value = p.description;
+        programModalForm['date'].value = p.date; // Set date
+        programModalForm['result'].value = p.result;
+        programIndexInput.value = editIndex;
+      }else{
+        programModalForm.reset();
+        programIndexInput.value = -1;
+      }
+      modalProgramForm.classList.add('active');
+      modalProgramForm.querySelector('.modal').focus();
+    }
+    function closeProgramModal(){
+      modalProgramForm.classList.remove('active');
+    }
+    addProgramBtn.addEventListener('click', () => openProgramModal(-1));
+    qs('#program-cancel-btn').addEventListener('click', closeProgramModal);
+    modalProgramForm.addEventListener('click', e => {
+      if(e.target === modalProgramForm) closeProgramModal();
+    });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && modalProgramForm.classList.contains('active')){
+        closeProgramModal();
+      }
+    });
+
+    programModalForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const wing = programModalForm['wing'].value.trim();
+      const name = programModalForm['name'].value.trim();
+      const description = programModalForm['description'].value.trim();
+      const date = programModalForm['date'].value; // Get date
+      const result = programModalForm['result'].value;
+      if(!wing || !name || !description || !date || !result){
+        showToast("Please fill all program fields!", true);
+        return;
+      }
+      const idx = +programIndexInput.value;
+      if(idx >= 0){
+        programs[idx] = {wing, name, description, date, result};
+        showToast(`Program "${name}" updated successfully.`);
+      } else {
+        programs.push({wing, name, description, date, result});
+        showToast(`Program "${name}" added successfully.`);
+      }
+      saveData(STORAGE_KEYS.programs, programs);
+      renderPrograms(searchProgramsInput.value);
+      closeProgramModal();
+    });
+
+    programsContainer.addEventListener('click', e => { // Changed from programsTbody
+      if (!isAdminAuthenticated && (e.target.classList.contains('edit') || e.target.classList.contains('delete'))) {
+        openAdminPasswordModal();
+        return;
+      }
+      
+      if(e.target.classList.contains('edit')){
+        const idx = +e.target.dataset.index;
+        openProgramModal(idx);
+      }
+      if(e.target.classList.contains('delete')){
+        const idx = +e.target.dataset.index;
+        if(confirm(`Delete program "${programs[idx].name}"?`)){
+          programs.splice(idx,1);
+          saveData(STORAGE_KEYS.programs,programs);
+          renderPrograms(searchProgramsInput.value);
+          showToast("Program deleted.");
+        }
+      }
+    });
+
+    renderPrograms();
+    
+    /* =================== RESULTS ===================== */
+    let results = loadData(STORAGE_KEYS.results);
+    const resultsContainer = qs('#results-container');
+    const addResultBtn = qs('#add-result-btn');
+    const modalResultForm = qs('#modal-result-form');
+    const resultModalForm = qs('#result-modal-form');
+    const resultIndexInput = qs('#result-index');
+    const resultProgramSelect = qs('#result-program-modal');
+    
+    function renderResults() {
+      resultsContainer.innerHTML = '';
+      
+      if (results.length === 0) {
+        resultsContainer.innerHTML = '<p>No results added yet.</p>';
+        return;
+      }
+      
+      results.forEach((result, index) => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'result-item';
+        resultItem.innerHTML = `
+          <h3>${escapeHtml(result.program)}</h3>
+          <p><strong>Date:</strong> ${new Date(result.date).toLocaleDateString()}</p>
+          <div class="result-positions">
+            <div class="position-card gold">
+              <h4>1st Position</h4>
+              <p>${escapeHtml(result.first)}</p>
+            </div>
+            <div class="position-card silver">
+              <h4>2nd Position</h4>
+              <p>${escapeHtml(result.second)}</p>
+            </div>
+            <div class="position-card bronze">
+              <h4>3rd Position</h4>
+              <p>${escapeHtml(result.third)}</p>
+            </div>
+          </div>
+          ${isAdminAuthenticated ? `
+            <div style="margin-top: 1rem; text-align: right;">
+              <button class="action-btn edit" data-index="${index}" aria-label="Edit result for ${escapeHtml(result.program)}">✏️</button>
+              <button class="action-btn delete" data-index="${index}" aria-label="Delete result for ${escapeHtml(result.program)}">🗑️</button>
+            </div>
+          ` : ''}
+        `;
+        resultsContainer.appendChild(resultItem);
+      });
+    }
+    
+    function populateProgramSelect() {
+      resultProgramSelect.innerHTML = '<option value="">Select Program</option>';
+      programs.forEach(program => {
+        const option = document.createElement('option');
+        option.value = program.name;
+        option.textContent = program.name;
+        resultProgramSelect.appendChild(option);
+      });
+    }
+    
+    function openResultModal(editIndex = -1) {
+      if (!isAdminAuthenticated) {
+        openAdminPasswordModal(() => openResultModal(editIndex));
+        return;
+      }
+      
+      populateProgramSelect();
+      
+      if (editIndex >= 0) {
+        const r = results[editIndex];
+        resultModalForm['program'].value = r.program;
+        resultModalForm['date'].value = r.date;
+        resultModalForm['first'].value = r.first;
+        resultModalForm['second'].value = r.second;
+        resultModalForm['third'].value = r.third;
+        resultIndexInput.value = editIndex;
+      } else {
+        resultModalForm.reset();
+        resultIndexInput.value = -1;
+      }
+      modalResultForm.classList.add('active');
+      modalResultForm.querySelector('.modal').focus();
+    }
+    
+    function closeResultModal() {
+      modalResultForm.classList.remove('active');
+    }
+    
+    addResultBtn.addEventListener('click', () => openResultModal(-1));
+    qs('#result-cancel-btn').addEventListener('click', closeResultModal);
+    modalResultForm.addEventListener('click', e => {
+      if (e.target === modalResultForm) closeResultModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modalResultForm.classList.contains('active')) {
+        closeResultModal();
+      }
+    });
+    
+    resultModalForm.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      const program = resultModalForm['program'].value.trim();
+      const date = resultModalForm['date'].value;
+      const first = resultModalForm['first'].value.trim();
+      const second = resultModalForm['second'].value.trim();
+      const third = resultModalForm['third'].value.trim();
+      
+      if (!program || !date || !first || !second || !third) {
+        showToast("Please fill all result fields!", true);
+        return;
+      }
+      
+      const idx = +resultIndexInput.value;
+      if (idx >= 0) {
+        // Update existing
+        results[idx] = { program, date, first, second, third };
+        showToast(`Result for "${program}" updated successfully.`);
+      } else {
+        // Add new
+        results.push({ program, date, first, second, third });
+        showToast(`Result for "${program}" added successfully.`);
+      }
+      
+      saveData(STORAGE_KEYS.results, results);
+      renderResults();
+      closeResultModal();
+    });
+    
+    // Edit and delete buttons for results
+    resultsContainer.addEventListener('click', e => {
+      if (!isAdminAuthenticated && (e.target.classList.contains('edit') || e.target.classList.contains('delete'))) {
+        openAdminPasswordModal();
+        return;
+      }
+      
+      if (e.target.classList.contains('edit')) {
+        const idx = +e.target.dataset.index;
+        openResultModal(idx);
+      } else if (e.target.classList.contains('delete')) {
+        const idx = +e.target.dataset.index;
+        if (confirm(`Delete result for "${results[idx].program}"?`)) {
+          results.splice(idx, 1);
+          saveData(STORAGE_KEYS.results, results);
+          renderResults();
+          showToast("Result deleted.");
+        }
+      }
+    });
+    
+    // Initial render
+    renderResults();
+
+    /* =================== GALLERY ===================== */
+    let galleryImages = loadData(STORAGE_KEYS.gallery) || [];
+    const galleryContainer = qs('#gallery-container');
+    const imageUploadInput = qs('#image-upload');
+    const uploadImageBtn = qs('#upload-image-btn');
+    const imageNameInput = qs('#image-name');
+    const searchGalleryInput = qs('#search-gallery');
+
+    // Render gallery images
+    function renderGallery(filter = '') {
+      galleryContainer.innerHTML = '';
+      let filtered = galleryImages.slice();
+      
+      if (filter.trim() !== '') {
+        const f = filter.toLowerCase();
+        filtered = filtered.filter(img => img.name.toLowerCase().includes(f));
+      }
+      
+      filtered.forEach((image, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.innerHTML = `
+          <img src="${image.url}" alt="${escapeHtml(image.name)}" tabindex="0">
+          <div class="image-name">${escapeHtml(image.name)}</div>
+          <div class="image-actions">
+            <button class="download-btn" data-index="${index}" aria-label="Download image ${escapeHtml(image.name)}">Download</button>
+            ${isAdminAuthenticated ? `
+              <button class="delete-btn" data-index="${index}" aria-label="Delete image ${escapeHtml(image.name)}">Delete</button>
+            ` : ''}
+          </div>
+        `;
+        galleryContainer.appendChild(galleryItem);
+      });
+      
+      // Add event listeners for image preview and actions
+      qsa('.gallery-item img').forEach(img => {
+        img.addEventListener('click', () => {
+          openImagePreview(img.src, img.alt);
+        });
+        img.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openImagePreview(img.src, img.alt);
+          }
+        });
+      });
+    }
+
+    // Open image preview modal
+    function openImagePreview(imageSrc, imageName) {
+      const modal = qs('#modal-image-preview');
+      const previewImage = qs('#preview-image');
+      const previewTitle = qs('#modal-image-preview-title');
+      const downloadBtn = qs('#download-image-btn');
+      
+      previewImage.src = imageSrc;
+      previewTitle.textContent = imageName;
+      downloadBtn.href = imageSrc;
+      downloadBtn.download = imageName || 'image';
+      
+      modal.classList.add('active');
+    }
+
+    // Close image preview modal
+    qs('#close-preview-btn').addEventListener('click', () => {
+      qs('#modal-image-preview').classList.remove('active');
+    });
+
+    qs('#modal-image-preview').addEventListener('click', e => {
+      if (e.target === qs('#modal-image-preview')) {
+        qs('#modal-image-preview').classList.remove('active');
+      }
+    });
+
+    // Handle image upload
+    uploadImageBtn.addEventListener('click', () => {
+      if (!isAdminAuthenticated) {
+        openAdminPasswordModal();
+        return;
+      }
+
+      const file = imageUploadInput.files[0];
+      const name = imageNameInput.value.trim() || (file ? file.name : '');
+      
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          galleryImages.push({
+            url: e.target.result,
+            name: name
+          });
+          saveData(STORAGE_KEYS.gallery, galleryImages);
+          renderGallery(searchGalleryInput.value);
+          imageUploadInput.value = ''; // Clear the input
+          imageNameInput.value = '';
+          showToast("Image uploaded successfully.");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        showToast("Please select an image file.", true);
+      }
+    });
+
+    // Search gallery
+    searchGalleryInput.addEventListener('input', () => {
+      renderGallery(searchGalleryInput.value);
+    });
+
+    // Delete image
+    galleryContainer.addEventListener('click', e => {
+      if (!isAdminAuthenticated && e.target.classList.contains('delete-btn')) {
+        openAdminPasswordModal();
+        return;
+      }
+      
+      if (e.target.classList.contains('delete-btn')) {
+        const idx = +e.target.dataset.index;
+        if (confirm(`Delete image "${galleryImages[idx].name}"?`)) {
+          galleryImages.splice(idx, 1);
+          saveData(STORAGE_KEYS.gallery, galleryImages);
+          renderGallery(searchGalleryInput.value);
+          showToast("Image deleted.");
+        }
+      }
+    });
+
+    // Initial render of gallery images
+    renderGallery();
+
+    /* =================== VIDEOS ===================== */
+    let videos = loadData(STORAGE_KEYS.videos) || [];
+    const videosContainer = qs('#videos-container');
+    const videoUploadInput = qs('#video-upload');
+    const uploadVideoBtn = qs('#upload-video-btn');
+    const videoNameInput = qs('#video-name');
+    const searchVideosInput = qs('#search-videos');
+
+    // Render videos
+    function renderVideos(filter = '') {
+      videosContainer.innerHTML = '';
+      let filtered = videos.slice();
+      
+      if (filter.trim() !== '') {
+        const f = filter.toLowerCase();
+        filtered = filtered.filter(vid => vid.name.toLowerCase().includes(f));
+      }
+      
+      filtered.forEach((video, index) => {
+        const videoItem = document.createElement('div');
+        videoItem.className = 'video-item';
+        videoItem.innerHTML = `
+          <video controls>
+            <source src="${video.url}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-name">${escapeHtml(video.name)}</div>
+          <div class="video-actions">
+            <a href="${video.url}" download="${escapeHtml(video.name)}.mp4" class="download-btn">Download</a>
+            ${isAdminAuthenticated ? `
+              <button class="delete-btn" data-index="${index}" aria-label="Delete video ${escapeHtml(video.name)}">Delete</button>
+            ` : ''}
+          </div>
+        `;
+        videosContainer.appendChild(videoItem);
+      });
+    }
+
+    // Handle video upload
+    uploadVideoBtn.addEventListener('click', () => {
+      if (!isAdminAuthenticated) {
+        openAdminPasswordModal();
+        return;
+      }
+
+      const file = videoUploadInput.files[0];
+      const name = videoNameInput.value.trim() || (file ? file.name.replace(/\.[^/.]+$/, "") : ''); // Remove extension
+      
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          videos.push({
+            url: e.target.result,
+            name: name
+          });
+          saveData(STORAGE_KEYS.videos, videos);
+          renderVideos(searchVideosInput.value);
+          videoUploadInput.value = ''; // Clear the input
+          videoNameInput.value = '';
+          showToast("Video uploaded successfully.");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        showToast("Please select a video file.", true);
+      }
+    });
+
+    // Search videos
+    searchVideosInput.addEventListener('input', () => {
+      renderVideos(searchVideosInput.value);
+    });
+
+    // Delete video
+    videosContainer.addEventListener('click', e => {
+      if (!isAdminAuthenticated && e.target.classList.contains('delete-btn')) {
+        openAdminPasswordModal();
+        return;
+      }
+      
+      if (e.target.classList.contains('delete-btn')) {
+        const idx = +e.target.dataset.index;
+        if (confirm(`Delete video "${videos[idx].name}"?`)) {
+          videos.splice(idx, 1);
+          saveData(STORAGE_KEYS.videos, videos);
+          renderVideos(searchVideosInput.value);
+          showToast("Video deleted.");
+        }
+      }
+    });
+
+    // Initial render of videos
+    renderVideos();
+
+    /* =================== LIBRARY ===================== */
+    let library = loadData(STORAGE_KEYS.library) || [];
+    const libraryContainer = qs('#library-container');
+    const bookUploadInput = qs('#book-upload');
+    const uploadBookBtn = qs('#upload-book-btn');
+    const bookNameInput = qs('#book-name');
+    const searchLibraryInput = qs('#search-library');
+
+    // Render library
+    function renderLibrary(filter = '') {
+      libraryContainer.innerHTML = '';
+      let filtered = library.slice();
+      
+      if (filter.trim() !== '') {
+        const f = filter.toLowerCase();
+        filtered = filtered.filter(book => book.name.toLowerCase().includes(f));
+      }
+      
+      filtered.forEach((book, index) => {
+        const bookItem = document.createElement('div');
+        bookItem.className = 'book-item';
+        bookItem.innerHTML = `
+          <div class="book-icon">📚</div>
+          <div class="book-name">${escapeHtml(book.name)}</div>
+          <div class="book-actions">
+            <a href="${book.url}" target="_blank" class="download-btn">Read/Download</a> <!-- Changed to open in new tab -->
+            ${isAdminAuthenticated ? `
+              <button class="delete-btn" data-index="${index}" aria-label="Delete book ${escapeHtml(book.name)}">Delete</button>
+            ` : ''}
+          </div>
+        `;
+        libraryContainer.appendChild(bookItem);
+      });
+    }
+
+    // Handle book upload
+    uploadBookBtn.addEventListener('click', () => {
+      if (!isAdminAuthenticated) {
+        openAdminPasswordModal();
+        return;
+      }
+
+      const file = bookUploadInput.files[0];
+      const name = bookNameInput.value.trim() || (file ? file.name.replace(/\.[^/.]+$/, "") : ''); // Remove extension
+      const type = file ? file.name.split('.').pop().toLowerCase() : '';
+      
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          library.push({
+            url: e.target.result,
+            name: name,
+            type: type
+          });
+          saveData(STORAGE_KEYS.library, library);
+          renderLibrary(searchLibraryInput.value);
+          bookUploadInput.value = ''; // Clear the input
+          bookNameInput.value = '';
+          showToast("Book uploaded successfully.");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        showToast("Please select a book file.", true);
+      }
+    });
+
+    // Search library
+    searchLibraryInput.addEventListener('input', () => {
+      renderLibrary(searchLibraryInput.value);
+    });
+
+    // Delete book
+    libraryContainer.addEventListener('click', e => {
+      if (!isAdminAuthenticated && e.target.classList.contains('delete-btn')) {
+        openAdminPasswordModal();
+        return;
+      }
+      
+      if (e.target.classList.contains('delete-btn')) {
+        const idx = +e.target.dataset.index;
+        if (confirm(`Delete book "${library[idx].name}"?`)) {
+          library.splice(idx, 1);
+          saveData(STORAGE_KEYS.library, library);
+          renderLibrary(searchLibraryInput.value);
+          showToast("Book deleted.");
+        }
+      }
+    });
+
+    // Initial render of library
+    renderLibrary();
+
+    // Initial UI update to reflect admin status
+    updateAdminUI();
+
+    // Set home page as active on load
+    setActiveSection('home');
+
+  })();
+</script>
+</body>
+</html>
